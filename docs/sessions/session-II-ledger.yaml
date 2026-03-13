@@ -1,0 +1,99 @@
+session_id: "II"
+date: "2026-03-13"
+branch: main
+version: "1.1.0"  # Minor: Resources section, visual fixes, Vercel deployment
+
+deployment:
+  platform: "Vercel"
+  status: "auto-deploy on push — us-payroll-guide.vercel.app"
+
+build_verification:
+  next_build: PASS
+  pages_generated: 36
+  errors: 0
+
+data_structure_consistency:
+  status: "not modified — all content is static in-page, no MongoDB changes"
+
+commits:
+  - hash: "c4ca406"
+    message: "feat: Add Resources section, fix homepage visual bugs, deploy to Vercel"
+
+artifacts_updated:
+  # New files
+  - app/resources/page.tsx
+  - app/resources/blog/page.tsx
+  - app/resources/blog/[slug]/page.tsx
+  - app/resources/faq/page.tsx
+  - app/resources/glossary/page.tsx
+  - app/resources/guides/page.tsx
+  - app/resources/news/page.tsx
+  # Modified files
+  - app/globals.css
+  - app/glossary/page.tsx
+  - app/page.tsx
+  - app/sitemap.ts
+  - components/Header.tsx
+  - docs/roadmap.md
+
+decisions_made:
+  - decision: "Full Resources section instead of standalone Glossary"
+    rationale: "AEO strategy requires comprehensive content coverage — blog, FAQ, guides, news, glossary all under one hub for topical authority"
+    reversible: true
+  - decision: "Deploy to Vercel with GitHub auto-deploy"
+    rationale: "Standard Next.js deployment platform, connected to GitHub for CI/CD"
+    reversible: true
+  - decision: "Blog posts stored as static data in page components (not MongoDB)"
+    rationale: "No MongoDB content pipeline exists yet — static data is sufficient for seed content. Can migrate to MongoDB in Phase 4."
+    reversible: true
+  - decision: "State SVG icons are placeholder line art (not geographically accurate)"
+    rationale: "Unblocks the visual improvement; accurate SVGs can be sourced from a library later"
+    reversible: true
+  - decision: "Hero headline changed to white text with lime accent (was translucent primary-light)"
+    rationale: "User flagged poor readability on dark background"
+    reversible: true
+
+known_risks:
+  - risk: "State SVG icons are approximate line art, not accurate state outlines"
+    mitigation: "Replace with accurate SVGs from a library (e.g., react-usa-map or similar) in Phase 3"
+    severity: low
+  - risk: "Blog content is hardcoded in page components"
+    mitigation: "Migrate to MongoDB-backed content in Phase 4"
+    severity: low
+  - risk: "Domain uspayrollguide.com not yet registered"
+    mitigation: "User action required — add as custom domain in Vercel once registered"
+    severity: medium
+  - risk: "GitHub repo still named 'global-payroll-nexus'"
+    mitigation: "Rename when convenient — Vercel connection may need updating"
+    severity: low
+
+explicitly_deferred:
+  - "Organization + BreadcrumbList JSON-LD schema"
+  - "OG images for social sharing"
+  - "Last updated timestamps on content pages"
+  - "Internal linking audit between pillar pages"
+  - "Chloé voice consistency review"
+  - "MongoDB integration for dynamic blog content"
+  - "Domain registration (uspayrollguide.com)"
+  - "Git repo rename"
+  - "Accurate state SVG outlines"
+
+next_actions:
+  - "Register uspayrollguide.com and add as custom domain in Vercel"
+  - "Rename GitHub repo from global-payroll-nexus"
+  - "Add Organization + BreadcrumbList JSON-LD schema"
+  - "Add OG images for social sharing"
+  - "Replace placeholder state SVGs with accurate outlines"
+  - "Strengthen internal linking between pillar pages and resources"
+  - "Add last-updated timestamps to content pages"
+  - "Run /audit to baseline code quality"
+
+invariants:
+  - "Site NOT branded as Teamed — independent resource"
+  - "CTAs link to teamed.global/contact-teamed"
+  - "Content voice: Chloé persona — reassuringly direct, advisory"
+  - "AEO-first pattern on all content pages"
+  - "MongoDB data under `data` field, not top-level"
+  - "Check HQ never mentioned publicly"
+  - "Framer Motion retained for animations"
+  - "Brand: slate blue #2D5A7B, lime #C1FA6B, coral #FF8E6E, Inter font"

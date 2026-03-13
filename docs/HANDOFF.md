@@ -1,6 +1,48 @@
 # Session Handoff: US Payroll Guide
 
-**Last Updated:** 2026-03-13 (Session I)
+**Last Updated:** 2026-03-13 (Session II)
+
+---
+
+## Session II — 2026-03-13
+
+### What was done this session
+1. **Deployed to Vercel** — site is live at `us-payroll-guide.vercel.app`, auto-deploys on push to main
+2. **Full Resources section** built — replaces standalone Glossary nav item:
+   - `/resources` — Hub page linking to all resource types
+   - `/resources/blog` — Blog listing with 3 seed articles (Form 5472, LLC vs C-Corp, First US Hire Checklist)
+   - `/resources/blog/[slug]` — Full blog post template with AEO pattern (answer-first, FAQ accordion, CTA)
+   - `/resources/faq` — 24 FAQs across 5 categories with FAQPage schema
+   - `/resources/glossary` — Glossary moved here (old `/glossary` redirects)
+   - `/resources/guides` — Links to all pillar guide pages
+   - `/resources/news` — 5 seed regulatory/compliance news items
+3. **Nav restructured** — "Glossary" replaced with "Resources" dropdown (Blog, Guides, FAQ, Glossary, News)
+4. **Homepage visual fixes:**
+   - Hero headline: full white text with lime accent (was translucent)
+   - Secondary CTA: solid slate blue button (was invisible white-on-white)
+   - Guide cards: lift + shadow + border color on hover
+   - State cards: uniform size, centered, SVG state outline icons
+   - Bottom CTA headline: explicit white text
+   - Dark section backgrounds: brighter blotches (20% opacity) with floating CSS animation
+5. **Sitemap updated** — 36 pages (up from 27)
+
+### Current state
+- **Build**: PASSING (36 pages)
+- **Deploy**: Vercel — us-payroll-guide.vercel.app (auto-deploy on push)
+- **Domain**: uspayrollguide.com — NOT YET REGISTERED
+- **Git**: github.com/bretstarr2024/global-payroll-nexus (repo name still needs updating)
+- **Content**: All static, in-page. Blog posts hardcoded in components. No MongoDB integration yet.
+- **Version**: 1.1.0
+
+### What's next (priority order)
+1. Register uspayrollguide.com and add as custom domain in Vercel
+2. Rename GitHub repo
+3. Add Organization + BreadcrumbList JSON-LD
+4. Add OG images for social sharing
+5. Replace placeholder state SVGs with accurate outlines
+6. Strengthen internal linking between pillar pages and resources
+7. Add last-updated timestamps
+8. Run /audit baseline
 
 ---
 
@@ -32,21 +74,6 @@ Check HQ is Teamed's invisible payroll-as-a-service infrastructure — never men
 8. **Build passes** cleanly (27 pages, 0 errors)
 9. **Pushed to GitHub** (main branch, commit 87c159c)
 
-### Current state
-- **Build**: PASSING (27 pages)
-- **Deploy**: NOT CONFIGURED — no platform chosen
-- **Domain**: uspayrollguide.com — not yet registered
-- **Git**: github.com/bretstarr2024/global-payroll-nexus (repo name needs updating)
-- **Content**: All static, in-page. No MongoDB integration yet.
-- **Version**: 1.0.0
-
-### Key files
-- `docs/product-brief.md` — Governing product brief
-- `docs/roadmap.md` — Phase-based roadmap
-- `CLAUDE.md` — Project instructions for Claude Code
-- `tailwind.config.cjs` — Brand kit implementation
-- `app/globals.css` — Component classes (.answer-block, .compliance-callout, etc.)
-
 ### Invariants (never violate)
 - Site NOT branded as Teamed — independent resource
 - CTAs link to teamed.global/contact-teamed
@@ -54,13 +81,4 @@ Check HQ is Teamed's invisible payroll-as-a-service infrastructure — never men
 - AEO-first pattern on all content pages
 - Check HQ never mentioned publicly
 - Framer Motion retained for animations
-
-### What's next (priority order)
-1. Configure deployment (Vercel or Railway)
-2. Register/configure uspayrollguide.com domain
-3. Rename GitHub repo
-4. Add Organization + BreadcrumbList JSON-LD
-5. Add OG images for social sharing
-6. Run /audit baseline
-7. Strengthen internal linking between pillar pages
-8. Review Chloé voice consistency across all content
+- Brand: slate blue #2D5A7B, lime #C1FA6B, coral #FF8E6E, Inter font
