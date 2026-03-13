@@ -1,6 +1,39 @@
 # Session Handoff: US Payroll Guide
 
-**Last Updated:** 2026-03-13 (Session III)
+**Last Updated:** 2026-03-13 (Session IV)
+
+---
+
+## Session IV — 2026-03-13
+
+### What was done this session
+1. **New shared `ContentCard` component** (`components/ContentCard.tsx`) — standardized card design used across the entire site. Supports vertical and horizontal layouts, optional icons, metadata pills, badges, and arrow CTAs.
+2. **`MetaPill` helper** — reusable pill component for category tags, dates, and read times.
+3. **Resources hub page upgraded** (`app/resources/page.tsx`) — rich cards with icons, descriptions, item counts ("3 articles", "24 questions across 5 categories"), and arrow CTAs ("Browse articles", "View all guides").
+4. **Resources nav now links to hub** — clicking "Resources" in header navigates to `/resources`; dropdown still opens on hover. Added "View all resources →" at bottom of dropdown.
+5. **Standardized card design across all pages:**
+   - Homepage pillars → `ContentCard` with icons, warm highlight for compliance
+   - Homepage states → `ContentCard` with `StateIcon`, centered layout
+   - Blog listing → `ContentCard` with `MetaPill` for category/date/readTime
+   - Guides listing → `ContentCard` with `MetaPill` for category/readTime
+   - States index → `ContentCard` horizontal layout with region badges
+
+### Current state
+- **Build**: PASSING (36 pages)
+- **Deploy**: Vercel — us-payroll-guide.vercel.app (auto-deploy on push)
+- **Domain**: uspayrollguide.com — NOT YET REGISTERED
+- **Git**: github.com/bretstarr2024/global-payroll-nexus (repo name still needs updating)
+- **Content**: All static, in-page. Blog posts hardcoded in components. No MongoDB integration yet.
+- **Version**: 1.2.0
+
+### What's next (priority order)
+1. Register uspayrollguide.com and add as custom domain in Vercel
+2. Rename GitHub repo
+3. Add Organization + BreadcrumbList JSON-LD
+4. Add OG images for social sharing
+5. Strengthen internal linking between pillar pages and resources
+6. Add last-updated timestamps
+7. Run /audit baseline
 
 ---
 

@@ -1,0 +1,90 @@
+session_id: "IV"
+date: "2026-03-13"
+branch: main
+version: "1.2.0"  # Minor: new ContentCard component + standardized card design across site
+
+deployment:
+  platform: "Vercel"
+  status: "auto-deploy on push — us-payroll-guide.vercel.app"
+
+build_verification:
+  next_build: PASS
+  pages_generated: 36
+  errors: 0
+
+data_structure_consistency:
+  status: "not modified — no MongoDB or data model changes"
+
+commits:
+  - hash: "0b9bbfd"
+    message: "feat: Add ContentCard component, standardize cards across site, link Resources hub"
+
+artifacts_updated:
+  # New files
+  - components/ContentCard.tsx
+  # Modified files
+  - app/page.tsx
+  - app/resources/page.tsx
+  - app/resources/blog/page.tsx
+  - app/resources/guides/page.tsx
+  - app/states/page.tsx
+  - components/Header.tsx
+  - docs/roadmap.md
+
+decisions_made:
+  - decision: "Create shared ContentCard component instead of ad-hoc card markup per page"
+    rationale: "User requested standardized card design across all sections; single component ensures consistency and reduces duplication"
+    reversible: true
+  - decision: "ContentCard supports vertical and horizontal layouts via layout prop"
+    rationale: "States index uses horizontal layout (icon left + content right); other pages use vertical (icon on top)"
+    reversible: true
+  - decision: "Resources nav label links to /resources hub page"
+    rationale: "User requested a proper hub page accessible from nav; dropdown still opens on hover for quick access to subsections"
+    reversible: true
+  - decision: "Added MetaPill helper component for category/date/readTime metadata"
+    rationale: "Standardizes the small metadata badges used in blog and guides listings"
+    reversible: true
+  - decision: "Added 'View all resources →' link at bottom of Resources dropdown"
+    rationale: "Provides secondary path to hub page from dropdown without replacing subsection links"
+    reversible: true
+
+known_risks:
+  - risk: "Domain uspayrollguide.com not yet registered"
+    mitigation: "User action required — add as custom domain in Vercel once registered"
+    severity: medium
+  - risk: "Blog content is hardcoded in page components"
+    mitigation: "Migrate to MongoDB-backed content in Phase 4"
+    severity: low
+  - risk: "GitHub repo still named 'global-payroll-nexus'"
+    mitigation: "Rename when convenient — Vercel connection may need updating"
+    severity: low
+
+explicitly_deferred:
+  - "Organization + BreadcrumbList JSON-LD schema"
+  - "OG images for social sharing"
+  - "Last updated timestamps on content pages"
+  - "Internal linking audit between pillar pages"
+  - "Chloé voice consistency review"
+  - "MongoDB integration for dynamic blog content"
+  - "Domain registration (uspayrollguide.com)"
+  - "Git repo rename"
+
+next_actions:
+  - "Register uspayrollguide.com and add as custom domain in Vercel"
+  - "Rename GitHub repo from global-payroll-nexus"
+  - "Add Organization + BreadcrumbList JSON-LD schema"
+  - "Add OG images for social sharing"
+  - "Strengthen internal linking between pillar pages and resources"
+  - "Add last-updated timestamps to content pages"
+  - "Run /audit to baseline code quality"
+
+invariants:
+  - "Site NOT branded as Teamed — independent resource"
+  - "CTAs link to teamed.global/contact-teamed"
+  - "Content voice: Chloé persona — reassuringly direct, advisory"
+  - "AEO-first pattern on all content pages"
+  - "MongoDB data under `data` field, not top-level"
+  - "Check HQ never mentioned publicly"
+  - "Framer Motion retained for animations"
+  - "Brand: slate blue #2D5A7B, lime #C1FA6B, coral #FF8E6E, Inter font"
+  - "All cards use ContentCard component for consistent design"
