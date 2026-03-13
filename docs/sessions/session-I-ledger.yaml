@@ -1,0 +1,118 @@
+session_id: "I"
+date: "2026-03-13"
+branch: main
+version: "1.0.0"  # Major: complete site rebuild from Global Payroll Nexus to US Payroll Guide
+
+deployment:
+  platform: "not configured"
+  status: "manual — no hook configured"
+
+build_verification:
+  next_build: PASS
+  pages_generated: 27
+  errors: 0
+
+data_structure_consistency:
+  status: "not modified — all content is static in-page, no MongoDB changes"
+
+commits:
+  - hash: "87c159c"
+    message: "feat: Rebuild site as US Payroll Guide for foreign-owned companies"
+
+artifacts_updated:
+  # New files
+  - app/benefits/page.tsx
+  - app/compliance/page.tsx
+  - app/compliance/form-5472/page.tsx
+  - app/entity-formation/page.tsx
+  - app/glossary/page.tsx
+  - app/states/page.tsx
+  - app/states/[slug]/page.tsx
+  - app/us-payroll/page.tsx
+  - components/ComplianceCallout.tsx
+  - docs/product-brief.md
+  # Modified files
+  - CLAUDE.md
+  - app/about/page.tsx
+  - app/contact/page.tsx
+  - app/globals.css
+  - app/layout.tsx
+  - app/page.tsx
+  - app/privacy/page.tsx
+  - app/robots.ts
+  - app/sitemap.ts
+  - app/terms/page.tsx
+  - components/FaqAccordion.tsx
+  - components/Footer.tsx
+  - components/Header.tsx
+  - components/StickyTOC.tsx
+  - docs/roadmap.md
+  - tailwind.config.cjs
+  # Deleted files
+  - app/contractor-compliance/page.tsx
+  - app/countries/page.tsx
+  - app/countries/[slug]/page.tsx
+  - app/employer-of-record/page.tsx
+  - app/eor-vs-entity/page.tsx
+  - app/global-payroll/page.tsx
+  - app/payroll-compliance/page.tsx
+  - app/resources/page.tsx
+  - app/resources/blog/page.tsx
+  - app/resources/glossary/page.tsx
+
+decisions_made:
+  - decision: "Pivot from Global Payroll Nexus to US Payroll Guide"
+    rationale: "Tom Daniel-Price briefing identified US payroll for foreign-owned companies as Teamed's key market opportunity. Old site was a generic international payroll encyclopedia with no focus."
+    reversible: false
+  - decision: "New brand kit — slate blue #2D5A7B, Inter font"
+    rationale: "Differentiate from Teamed's own brand (purple/Montserrat) while maintaining visual continuity via shared lime accent and coral"
+    reversible: true
+  - decision: "Foreign-ownership compliance as key differentiator"
+    rationale: "Form 5472, transfer pricing, pro forma 1120 — no competitor covers this. $25k penalty per form is a powerful fear-based hook."
+    reversible: false
+  - decision: "10 states seeded (DE, CA, NY, TX, FL, MA, WA, IL, CO, GA)"
+    rationale: "Most common states for foreign company registration, covers ~80% of use cases"
+    reversible: true
+  - decision: "Keep Framer Motion in stack"
+    rationale: "User explicitly requested animation framework be retained"
+    reversible: true
+
+known_risks:
+  - risk: "GitHub repo still named 'global-payroll-nexus'"
+    mitigation: "Rename repo to match new site name when domain is confirmed"
+    severity: low
+  - risk: "No deployment configured — site only exists locally + GitHub"
+    mitigation: "Configure Vercel or Railway deployment next session"
+    severity: medium
+  - risk: "Domain uspayrollguide.com not yet registered/configured"
+    mitigation: "Register domain and point to deployment platform"
+    severity: medium
+
+explicitly_deferred:
+  - "Deployment configuration — no platform chosen yet"
+  - "Domain registration (uspayrollguide.com)"
+  - "Organization + BreadcrumbList JSON-LD schema"
+  - "OG images for social sharing"
+  - "Last updated timestamps on content pages"
+  - "MongoDB integration for blog/dynamic content"
+  - "Analytics integration"
+  - "Git repo rename from global-payroll-nexus"
+
+next_actions:
+  - "Configure deployment (Vercel or Railway)"
+  - "Register/configure uspayrollguide.com domain"
+  - "Rename GitHub repo to match site name"
+  - "Add Organization + BreadcrumbList structured data"
+  - "Add OG images"
+  - "Run /audit to baseline code quality"
+  - "Review content voice consistency (Chloé persona)"
+  - "Strengthen internal linking between pillar pages"
+
+invariants:
+  - "Site NOT branded as Teamed — independent resource"
+  - "CTAs link to teamed.global/contact-teamed"
+  - "Content voice: Chloé persona — reassuringly direct, advisory"
+  - "AEO-first pattern on all content pages"
+  - "MongoDB data under `data` field, not top-level"
+  - "Check HQ never mentioned publicly"
+  - "Framer Motion retained for animations"
