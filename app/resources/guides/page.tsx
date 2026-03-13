@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { ContentCard, MetaPill } from '@/components/ContentCard';
 
 export const metadata: Metadata = {
   title: 'Guides — US Payroll Guide',
@@ -66,27 +67,18 @@ export default function GuidesPage() {
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {guides.map((guide, index) => (
             <AnimatedSection key={guide.href} delay={index * 0.08}>
-              <Link
+              <ContentCard
                 href={guide.href}
-                className="card card-hover group block hover:no-underline h-full"
-              >
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                    {guide.category}
-                  </span>
-                  <span className="text-xs text-text-muted">{guide.readTime}</span>
-                </div>
-                <h2 className="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
-                  {guide.title}
-                </h2>
-                <p className="text-text-secondary text-sm">{guide.description}</p>
-                <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary">
-                  Read guide
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </span>
-              </Link>
+                title={guide.title}
+                description={guide.description}
+                cta="Read guide"
+                meta={
+                  <>
+                    <MetaPill>{guide.category}</MetaPill>
+                    <MetaPill variant="muted">{guide.readTime}</MetaPill>
+                  </>
+                }
+              />
             </AnimatedSection>
           ))}
         </div>

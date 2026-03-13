@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { ContentCard, MetaPill } from '@/components/ContentCard';
 
 export const metadata: Metadata = {
   title: 'Blog — US Payroll Guide',
@@ -55,22 +56,19 @@ export default function BlogPage() {
         <div className="mt-12 space-y-6">
           {posts.map((post, index) => (
             <AnimatedSection key={post.slug} delay={index * 0.08}>
-              <Link
+              <ContentCard
                 href={`/resources/blog/${post.slug}`}
-                className="card card-hover group block hover:no-underline"
-              >
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-text-muted">{post.date}</span>
-                  <span className="text-xs text-text-muted">{post.readTime}</span>
-                </div>
-                <h2 className="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
-                  {post.title}
-                </h2>
-                <p className="text-text-secondary">{post.excerpt}</p>
-              </Link>
+                title={post.title}
+                description={post.excerpt}
+                cta="Read article"
+                meta={
+                  <>
+                    <MetaPill>{post.category}</MetaPill>
+                    <MetaPill variant="muted">{post.date}</MetaPill>
+                    <MetaPill variant="muted">{post.readTime}</MetaPill>
+                  </>
+                }
+              />
             </AnimatedSection>
           ))}
         </div>

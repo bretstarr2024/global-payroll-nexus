@@ -46,23 +46,35 @@ function useDropdown() {
   return { open, setOpen, ref, handlers };
 }
 
-function DropdownButton({ label, open }: { label: string; open: boolean }) {
-  return (
-    <button
-      className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
+function DropdownButton({ label, open, href }: { label: string; open: boolean; href?: string }) {
+  const className = "flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all";
+  const chevron = (
+    <motion.svg
+      animate={{ rotate: open ? 180 : 0 }}
+      transition={{ duration: 0.2 }}
+      className="w-4 h-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
     >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+    </motion.svg>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={`${className} hover:no-underline`}>
+        {label}
+        <span onClick={(e) => e.preventDefault()}>{chevron}</span>
+      </Link>
+    );
+  }
+
+  return (
+    <button className={className}>
       {label}
-      <motion.svg
-        animate={{ rotate: open ? 180 : 0 }}
-        transition={{ duration: 0.2 }}
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-      </motion.svg>
+      {chevron}
     </button>
   );
 }
@@ -163,7 +175,7 @@ export function Header() {
 
           {/* Resources dropdown */}
           <div ref={resources.ref} className="relative" {...resources.handlers}>
-            <DropdownButton label="Resources" open={resources.open} />
+            <DropdownButton label="Resources" open={resources.open} href="/resources" />
             <DropdownPanel open={resources.open} width="w-80">
               {resourcesDropdownItems.map((item) => (
                 <Link
@@ -182,6 +194,15 @@ export function Header() {
                   )}
                 </Link>
               ))}
+              <div className="border-t border-border mt-1 pt-1">
+                <Link
+                  href="/resources"
+                  onClick={() => resources.setOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-primary hover:bg-surface-alt rounded-lg transition-colors hover:no-underline"
+                >
+                  View all resources &rarr;
+                </Link>
+              </div>
             </DropdownPanel>
           </div>
 

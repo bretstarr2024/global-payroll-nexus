@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { ContentCard } from '@/components/ContentCard';
 import { StateIcon } from '@/components/StateIcon';
 
 export const metadata: Metadata = {
@@ -47,21 +48,14 @@ export default function StatesPage() {
         <div className="grid md:grid-cols-2 gap-4">
           {states.map((state, index) => (
             <AnimatedSection key={state.slug} delay={index * 0.05}>
-              <Link
+              <ContentCard
                 href={`/states/${state.slug}`}
-                className="card group flex items-start gap-4 hover:no-underline hover:border-primary/30"
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <StateIcon state={state.name} className="w-6 h-6" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-text group-hover:text-primary transition-colors">
-                    {state.name}
-                  </h2>
-                  <p className="text-sm text-text-secondary mt-1">{state.detail}</p>
-                  <span className="text-xs text-text-muted mt-1 block">{state.region}</span>
-                </div>
-              </Link>
+                layout="horizontal"
+                icon={<StateIcon state={state.name} className="w-6 h-6" />}
+                title={state.name}
+                description={state.detail}
+                badge={{ label: state.region }}
+              />
             </AnimatedSection>
           ))}
         </div>

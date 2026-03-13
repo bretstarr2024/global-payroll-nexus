@@ -1,6 +1,6 @@
 # US Payroll Guide — Roadmap
 
-**Last Updated:** 2026-03-13 (Session III)
+**Last Updated:** 2026-03-13 (Session IV)
 
 ---
 
@@ -9,7 +9,7 @@
 - [x] Strategic pivot from Global Payroll Nexus → US Payroll Guide
 - [x] New brand kit (slate blue, Inter font, coral warnings, lime CTAs)
 - [x] Tailwind CSS + brand system configured
-- [x] Shared components: Header, Footer, AnimatedSection, StickyTOC, FaqAccordion, ComplianceCallout
+- [x] Shared components: Header, Footer, AnimatedSection, StickyTOC, FaqAccordion, ComplianceCallout, ContentCard
 - [x] Session management infrastructure installed
 - [x] Product brief created (docs/product-brief.md)
 - [x] All pillar pages written: Entity Formation, US Payroll, Compliance, Benefits
@@ -35,6 +35,10 @@
 - [x] Nav restructured: "Glossary" → "Resources" dropdown
 - [x] Sitemap updated with all new routes (36 pages total)
 - [x] Homepage visual fixes: hero contrast, CTA button, card hover, state icons, background animation
+- [x] Shared ContentCard component — standardized card design across all sections (Session IV)
+- [x] Resources hub page upgraded with rich cards, descriptions, counts, and CTAs (Session IV)
+- [x] Resources nav label links to /resources hub with "View all resources" in dropdown (Session IV)
+- [x] Card design standardized across homepage, blog, guides, and states pages (Session IV)
 - [ ] Add Organization + BreadcrumbList JSON-LD schema
 - [ ] Add "Last updated" timestamps to all content pages
 - [ ] Strengthen internal linking between pillar pages

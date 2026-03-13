@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { ContentCard } from '@/components/ContentCard';
 import { StateIcon } from '@/components/StateIcon';
 
 const pillars = [
@@ -7,6 +8,7 @@ const pillars = [
     title: 'Entity Formation',
     description: 'LLC vs C-Corp, state selection, registered agents, and the full setup process for foreign-owned US subsidiaries.',
     href: '/entity-formation',
+    cta: 'Read guide',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0-.75 3.75m0 0-.75 3.75" />
@@ -17,6 +19,7 @@ const pillars = [
     title: 'US Payroll',
     description: 'Federal and state tax withholding, pay schedules, multi-state registration, and choosing the right payroll provider.',
     href: '/us-payroll',
+    cta: 'Read guide',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -27,7 +30,9 @@ const pillars = [
     title: 'Foreign-Ownership Compliance',
     description: 'Form 5472, transfer pricing, pro forma 1120 — the obligations most US payroll providers don\'t tell you about.',
     href: '/compliance',
+    cta: 'Read guide',
     highlight: true,
+    badge: { label: 'The gap no one covers', variant: 'warm' as const },
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -38,6 +43,7 @@ const pillars = [
     title: 'Benefits & Employment Law',
     description: 'Health insurance, 401(k), PTO, at-will employment, and the things that surprise UK and European companies most.',
     href: '/benefits',
+    cta: 'Read guide',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
@@ -45,7 +51,6 @@ const pillars = [
     ),
   },
 ];
-
 
 const topStates = [
   { name: 'Delaware', href: '/states/delaware', detail: 'Most common for incorporation' },
@@ -133,29 +138,15 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6">
             {pillars.map((pillar, index) => (
               <AnimatedSection key={pillar.href} delay={index * 0.1}>
-                <Link
+                <ContentCard
                   href={pillar.href}
-                  className={`card card-hover group block hover:no-underline ${pillar.highlight ? 'border-accent-warm/30 hover:border-accent-warm/60' : ''}`}
-                >
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${pillar.highlight ? 'bg-accent-warm/10 text-accent-warm' : 'bg-primary/10 text-primary'}`}>
-                    {pillar.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-text-secondary">{pillar.description}</p>
-                  {pillar.highlight && (
-                    <span className="inline-block mt-3 text-xs font-semibold text-accent-warm-dark bg-accent-warm/10 px-2.5 py-1 rounded-full">
-                      The gap no one covers
-                    </span>
-                  )}
-                  <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary">
-                    Read guide
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </span>
-                </Link>
+                  icon={pillar.icon}
+                  title={pillar.title}
+                  description={pillar.description}
+                  highlight={pillar.highlight}
+                  badge={pillar.badge}
+                  cta={pillar.cta}
+                />
               </AnimatedSection>
             ))}
           </div>
@@ -191,13 +182,13 @@ export default function HomePage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {topStates.map((state, index) => (
               <AnimatedSection key={state.href} delay={index * 0.05}>
-                <Link href={state.href} className="card card-hover group block hover:no-underline p-5 h-full flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                    <StateIcon state={state.name} />
-                  </div>
-                  <span className="block text-base font-semibold text-text group-hover:text-primary transition-colors">{state.name}</span>
-                  <span className="block text-sm text-text-muted mt-1">{state.detail}</span>
-                </Link>
+                <ContentCard
+                  href={state.href}
+                  icon={<StateIcon state={state.name} />}
+                  title={state.name}
+                  description={state.detail}
+                  className="text-center [&>div:first-child]:mx-auto [&>div:first-child]:w-12 [&>div:first-child]:h-12 [&>div:first-child]:rounded-xl [&>h3]:text-base [&>h3]:font-semibold"
+                />
               </AnimatedSection>
             ))}
           </div>
