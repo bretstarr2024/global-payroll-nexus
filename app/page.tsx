@@ -45,6 +45,35 @@ const pillars = [
   },
 ];
 
+// Simple line-art SVG outlines for each state
+const stateIcons: Record<string, React.ReactNode> = {
+  Delaware: (
+    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 4 L22 4 L24 10 L26 18 L24 26 L20 34 L16 30 L14 20 L16 10 Z" />
+    </svg>
+  ),
+  California: (
+    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 4 L14 4 L16 8 L14 14 L16 18 L18 22 L22 28 L26 32 L24 36 L20 36 L16 32 L12 28 L8 22 L6 16 L8 10 Z" />
+    </svg>
+  ),
+  'New York': (
+    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 12 L10 10 L18 8 L26 10 L30 12 L34 16 L30 20 L28 18 L24 22 L20 26 L16 24 L12 20 L8 18 L4 16 Z" />
+    </svg>
+  ),
+  Texas: (
+    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 4 L28 4 L28 10 L34 10 L34 16 L30 22 L26 30 L22 36 L18 34 L14 30 L10 26 L6 20 L4 14 L8 10 Z" />
+    </svg>
+  ),
+  Florida: (
+    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6 L30 6 L32 10 L30 14 L28 20 L24 28 L20 34 L18 32 L16 26 L12 20 L8 14 L4 10 Z" />
+    </svg>
+  ),
+};
+
 const topStates = [
   { name: 'Delaware', href: '/states/delaware', detail: 'Most common for incorporation' },
   { name: 'California', href: '/states/california', detail: 'Largest talent pool' },
@@ -77,19 +106,19 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-dark text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-48 h-48 rounded-full bg-accent-warm blur-3xl" />
-          <div className="absolute top-40 right-40 w-32 h-32 rounded-full bg-accent blur-2xl" />
+        <div className="hero-bg-blotches">
+          <div className="hero-blotch hero-blotch-1 bg-primary" />
+          <div className="hero-blotch hero-blotch-2 bg-accent-warm" />
+          <div className="hero-blotch hero-blotch-3 bg-accent" />
         </div>
         <div className="container-wide relative z-10 py-20 md:py-32">
           <AnimatedSection>
             <p className="text-accent font-medium text-sm uppercase tracking-wider mb-4">
               For UK & European companies expanding to the US
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mb-6 text-white">
               US payroll and compliance for{' '}
-              <span className="text-primary-light">foreign-owned companies</span>
+              <span className="text-accent">foreign-owned companies</span>
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed">
               Entity formation, payroll setup, Form 5472 compliance, and employment law — the guide your US accountant probably hasn&apos;t given you yet.
@@ -98,7 +127,7 @@ export default function HomePage() {
               <Link href="/entity-formation" className="btn-primary hover:no-underline">
                 Start with Entity Formation
               </Link>
-              <Link href="/compliance" className="btn-outline border-white/20 text-white hover:border-accent hover:text-accent hover:no-underline">
+              <Link href="/compliance" className="btn-secondary hover:no-underline">
                 Foreign-Ownership Compliance
               </Link>
             </div>
@@ -133,7 +162,7 @@ export default function HomePage() {
               <AnimatedSection key={pillar.href} delay={index * 0.1}>
                 <Link
                   href={pillar.href}
-                  className={`card group block hover:no-underline ${pillar.highlight ? 'border-accent-warm/30 hover:border-accent-warm/60' : 'hover:border-primary/30'}`}
+                  className={`card card-hover group block hover:no-underline ${pillar.highlight ? 'border-accent-warm/30 hover:border-accent-warm/60' : ''}`}
                 >
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${pillar.highlight ? 'bg-accent-warm/10 text-accent-warm' : 'bg-primary/10 text-primary'}`}>
                     {pillar.icon}
@@ -186,10 +215,13 @@ export default function HomePage() {
               Each US state has different employer registration requirements, tax rates, and employment laws.
             </p>
           </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {topStates.map((state, index) => (
               <AnimatedSection key={state.href} delay={index * 0.05}>
-                <Link href={state.href} className="card group block hover:no-underline hover:border-primary/30 p-5">
+                <Link href={state.href} className="card card-hover group block hover:no-underline p-5 h-full flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                    {stateIcons[state.name]}
+                  </div>
                   <span className="block text-base font-semibold text-text group-hover:text-primary transition-colors">{state.name}</span>
                   <span className="block text-sm text-text-muted mt-1">{state.detail}</span>
                 </Link>
@@ -239,13 +271,13 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-dark text-white section-padding">
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute top-10 right-20 w-48 h-48 rounded-full bg-primary blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-64 h-64 rounded-full bg-accent-warm blur-3xl" />
+        <div className="hero-bg-blotches">
+          <div className="hero-blotch hero-blotch-2 bg-primary" />
+          <div className="hero-blotch hero-blotch-1 bg-accent-warm" />
         </div>
         <div className="container-narrow relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Expanding to the US?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Expanding to the US?</h2>
             <p className="text-lg text-slate-300 mb-8 max-w-xl mx-auto">
               Get specialist advice on entity formation, US payroll setup, and foreign-ownership compliance — from people who do this every day.
             </p>

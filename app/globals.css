@@ -147,6 +147,50 @@
   @apply text-primary border-l-primary font-medium;
 }
 
+/* Enhanced card hover */
+.card-hover {
+  @apply hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-200;
+}
+
+/* Animated background blotches for dark sections */
+.hero-bg-blotches {
+  @apply absolute inset-0 overflow-hidden;
+  opacity: 0.20;
+}
+
+.hero-blotch {
+  @apply absolute rounded-full;
+  filter: blur(80px);
+  animation: float 12s ease-in-out infinite;
+}
+
+.hero-blotch-1 {
+  @apply w-64 h-64 top-20 left-10;
+  animation-delay: 0s;
+}
+
+.hero-blotch-2 {
+  @apply w-48 h-48 bottom-10 right-20;
+  animation-delay: -4s;
+}
+
+.hero-blotch-3 {
+  @apply w-32 h-32 top-40 right-40;
+  animation-delay: -8s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(15px, -20px) scale(1.05);
+  }
+  66% {
+    transform: translate(-10px, 15px) scale(0.95);
+  }
+}
+
 /* FAQ Accordion styles */
 .faq-item summary {
   @apply cursor-pointer list-none;

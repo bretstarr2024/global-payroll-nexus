@@ -20,29 +20,38 @@
 - [x] Sitemap + robots.txt (uspayrollguide.com)
 - [x] FAQPage schema on all FAQ sections
 - [x] Old routes deleted (employer-of-record, global-payroll, countries, resources, etc.)
-- [x] Build passes cleanly (27 pages)
+- [x] Build passes cleanly
 - [x] CLAUDE.md updated for new site
-- [ ] Initialize git repository and push to GitHub
-- [ ] Configure deployment (Vercel or Railway)
+- [x] Deployed to Vercel (us-payroll-guide.vercel.app)
+- [x] GitHub repo connected for auto-deploy on push
 
-## Phase 2: Content & AEO Refinement
+## Phase 2: Content & AEO Refinement ✅ COMPLETE
+- [x] Full Resources section: hub, blog, FAQ, glossary, guides, news
+- [x] Blog with 3 seed articles (Form 5472, LLC vs C-Corp, First US Hire Checklist)
+- [x] FAQ hub with 24 questions across 5 categories + FAQPage schema
+- [x] Glossary moved under /resources/glossary (redirect from /glossary)
+- [x] News & updates feed (5 seed items)
+- [x] Guides index page linking to all pillar content
+- [x] Nav restructured: "Glossary" → "Resources" dropdown
+- [x] Sitemap updated with all new routes (36 pages total)
+- [x] Homepage visual fixes: hero contrast, CTA button, card hover, state icons, background animation
 - [ ] Add Organization + BreadcrumbList JSON-LD schema
 - [ ] Add "Last updated" timestamps to all content pages
 - [ ] Strengthen internal linking between pillar pages
 - [ ] Review and refine Chloé voice consistency across all content
 - [ ] Add OG images for social sharing
-- [ ] Audit content for AEO-first pattern compliance (answer blocks, TL;DR bullets)
 
 ## Phase 3: State Guide Expansion
 - [ ] Add remaining high-demand states (New Jersey, Pennsylvania, North Carolina, etc.)
 - [ ] Add state comparison functionality
 - [ ] State-specific compliance checklists
+- [ ] State SVG icons — replace placeholder line art with accurate state outlines
 
 ## Phase 4: Dynamic Content
-- [ ] Connect MongoDB for blog/resource content
-- [ ] Blog post template and listing
+- [ ] Connect MongoDB for blog/resource content (replace static blog post data)
 - [ ] Glossary search/filter functionality
-- [ ] Resource hub with categorization
+- [ ] Blog pagination and category filtering
+- [ ] News feed from external regulatory sources
 
 ## Phase 5: Optimization & Polish
 - [ ] Performance audit (Core Web Vitals)
@@ -64,3 +73,5 @@
 - Chat widget — future consideration
 - Dashboard/analytics — future consideration
 - Check HQ product integration — invisible until product launches
+- Domain registration (uspayrollguide.com) — user action required
+- GitHub repo rename from global-payroll-nexus — user action required

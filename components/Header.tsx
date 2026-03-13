@@ -20,22 +20,87 @@ const statesDropdownItems = [
   { name: 'All States', href: '/states' },
 ];
 
+const resourcesDropdownItems = [
+  { name: 'Blog', href: '/resources/blog', description: 'Articles on US payroll, compliance, and employment law' },
+  { name: 'Guides', href: '/resources/guides', description: 'Step-by-step guides for entity formation, payroll, and more' },
+  { name: 'FAQ', href: '/resources/faq', description: 'Answers to common questions from foreign companies' },
+  { name: 'Glossary', href: '/resources/glossary', description: 'US payroll and compliance terms explained' },
+  { name: 'News & Updates', href: '/resources/news', description: 'Regulatory changes and compliance updates' },
+];
+
+function useDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handlers = {
+    onMouseEnter: () => {
+      if (timeout.current) clearTimeout(timeout.current);
+      setOpen(true);
+    },
+    onMouseLeave: () => {
+      timeout.current = setTimeout(() => setOpen(false), 150);
+    },
+  };
+
+  return { open, setOpen, ref, handlers };
+}
+
+function DropdownButton({ label, open }: { label: string; open: boolean }) {
+  return (
+    <button
+      className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
+    >
+      {label}
+      <motion.svg
+        animate={{ rotate: open ? 180 : 0 }}
+        transition={{ duration: 0.2 }}
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </motion.svg>
+    </button>
+  );
+}
+
+function DropdownPanel({ open, width, children }: { open: boolean; width: string; children: React.ReactNode }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, y: -8, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -8, scale: 0.96 }}
+          transition={{ duration: 0.15, ease: 'easeOut' }}
+          className={`absolute top-full left-0 mt-1 ${width} bg-white rounded-xl shadow-lg border border-border overflow-hidden`}
+        >
+          <div className="p-2">{children}</div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [guidesOpen, setGuidesOpen] = useState(false);
-  const [statesOpen, setStatesOpen] = useState(false);
-  const guidesRef = useRef<HTMLDivElement>(null);
-  const statesRef = useRef<HTMLDivElement>(null);
-  const guidesTimeout = useRef<NodeJS.Timeout | null>(null);
-  const statesTimeout = useRef<NodeJS.Timeout | null>(null);
+  const guides = useDropdown();
+  const states = useDropdown();
+  const resources = useDropdown();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (guidesRef.current && !guidesRef.current.contains(event.target as Node)) {
-        setGuidesOpen(false);
+      if (guides.ref.current && !guides.ref.current.contains(event.target as Node)) {
+        guides.setOpen(false);
       }
-      if (statesRef.current && !statesRef.current.contains(event.target as Node)) {
-        setStatesOpen(false);
+      if (states.ref.current && !states.ref.current.contains(event.target as Node)) {
+        states.setOpen(false);
+      }
+      if (resources.ref.current && !resources.ref.current.contains(event.target as Node)) {
+        resources.setOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -58,128 +123,67 @@ export function Header() {
         {/* Desktop navigation */}
         <div className="hidden lg:flex items-center gap-1">
           {/* Guides dropdown */}
-          <div
-            ref={guidesRef}
-            className="relative"
-            onMouseEnter={() => {
-              if (guidesTimeout.current) clearTimeout(guidesTimeout.current);
-              setGuidesOpen(true);
-            }}
-            onMouseLeave={() => {
-              guidesTimeout.current = setTimeout(() => setGuidesOpen(false), 150);
-            }}
-          >
-            <button
-              onClick={() => setGuidesOpen(!guidesOpen)}
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
-            >
-              Guides
-              <motion.svg
-                animate={{ rotate: guidesOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </motion.svg>
-            </button>
-
-            <AnimatePresence>
-              {guidesOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.15, ease: 'easeOut' }}
-                  className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-border overflow-hidden"
+          <div ref={guides.ref} className="relative" {...guides.handlers}>
+            <DropdownButton label="Guides" open={guides.open} />
+            <DropdownPanel open={guides.open} width="w-80">
+              {guidesDropdownItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => guides.setOpen(false)}
+                  className="block px-4 py-3 rounded-lg hover:bg-surface-alt transition-colors hover:no-underline group"
                 >
-                  <div className="p-2">
-                    {guidesDropdownItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setGuidesOpen(false)}
-                        className="block px-4 py-3 rounded-lg hover:bg-surface-alt transition-colors hover:no-underline group"
-                      >
-                        <span className="block text-sm font-medium text-text group-hover:text-primary transition-colors">
-                          {item.name}
-                        </span>
-                        <span className="block text-xs text-text-muted mt-0.5">
-                          {item.description}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <span className="block text-sm font-medium text-text group-hover:text-primary transition-colors">
+                    {item.name}
+                  </span>
+                  <span className="block text-xs text-text-muted mt-0.5">
+                    {item.description}
+                  </span>
+                </Link>
+              ))}
+            </DropdownPanel>
           </div>
 
           {/* States dropdown */}
-          <div
-            ref={statesRef}
-            className="relative"
-            onMouseEnter={() => {
-              if (statesTimeout.current) clearTimeout(statesTimeout.current);
-              setStatesOpen(true);
-            }}
-            onMouseLeave={() => {
-              statesTimeout.current = setTimeout(() => setStatesOpen(false), 150);
-            }}
-          >
-            <button
-              onClick={() => setStatesOpen(!statesOpen)}
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
-            >
-              States
-              <motion.svg
-                animate={{ rotate: statesOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </motion.svg>
-            </button>
-
-            <AnimatePresence>
-              {statesOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.15, ease: 'easeOut' }}
-                  className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-border overflow-hidden"
+          <div ref={states.ref} className="relative" {...states.handlers}>
+            <DropdownButton label="States" open={states.open} />
+            <DropdownPanel open={states.open} width="w-56">
+              {statesDropdownItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => states.setOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-text hover:text-primary hover:bg-surface-alt rounded-lg transition-colors hover:no-underline"
                 >
-                  <div className="p-2">
-                    {statesDropdownItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setStatesOpen(false)}
-                        className="block px-4 py-2.5 text-sm font-medium text-text hover:text-primary hover:bg-surface-alt rounded-lg transition-colors hover:no-underline"
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  {item.name}
+                </Link>
+              ))}
+            </DropdownPanel>
           </div>
 
-          <Link
-            href="/glossary"
-            className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all hover:no-underline"
-          >
-            Glossary
-          </Link>
+          {/* Resources dropdown */}
+          <div ref={resources.ref} className="relative" {...resources.handlers}>
+            <DropdownButton label="Resources" open={resources.open} />
+            <DropdownPanel open={resources.open} width="w-80">
+              {resourcesDropdownItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => resources.setOpen(false)}
+                  className="block px-4 py-3 rounded-lg hover:bg-surface-alt transition-colors hover:no-underline group"
+                >
+                  <span className="block text-sm font-medium text-text group-hover:text-primary transition-colors">
+                    {item.name}
+                  </span>
+                  {item.description && (
+                    <span className="block text-xs text-text-muted mt-0.5">
+                      {item.description}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </DropdownPanel>
+          </div>
 
           <Link
             href="/about"
@@ -298,10 +302,33 @@ export function Header() {
                 </div>
               </div>
 
+              <div className="mb-4">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2 px-2">Resources</p>
+                <div className="space-y-1">
+                  {resourcesDropdownItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (index + 10) * 0.05 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-3 py-2.5 rounded-lg hover:bg-surface-alt transition-all hover:no-underline"
+                      >
+                        <span className="block text-base font-medium text-text">{item.name}</span>
+                        <span className="block text-sm text-text-muted">{item.description}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.4 }}
                 className="pt-4 border-t border-border"
               >
                 <a
