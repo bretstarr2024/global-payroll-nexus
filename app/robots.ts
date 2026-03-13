@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://globalpayrollnexus.com/sitemap.xml',
+    sitemap: 'https://uspayrollguide.com/sitemap.xml',
   };
 }

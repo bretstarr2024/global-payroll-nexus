@@ -4,52 +4,49 @@ const footerSections = [
   {
     title: 'Guides',
     links: [
-      { name: 'Employer of Record', href: '/employer-of-record' },
-      { name: 'Global Payroll', href: '/global-payroll' },
-      { name: 'EOR vs Entity', href: '/eor-vs-entity' },
-      { name: 'Contractor Compliance', href: '/contractor-compliance' },
-      { name: 'Payroll Compliance', href: '/payroll-compliance' },
+      { name: 'Entity Formation', href: '/entity-formation' },
+      { name: 'US Payroll', href: '/us-payroll' },
+      { name: 'Foreign-Ownership Compliance', href: '/compliance' },
+      { name: 'Form 5472 Guide', href: '/compliance/form-5472' },
+      { name: 'Employee Benefits', href: '/benefits' },
     ],
   },
   {
-    title: 'Countries',
+    title: 'State Guides',
     links: [
-      { name: 'United Kingdom', href: '/countries/united-kingdom' },
-      { name: 'Germany', href: '/countries/germany' },
-      { name: 'United States', href: '/countries/united-states' },
-      { name: 'France', href: '/countries/france' },
-      { name: 'All Countries', href: '/countries' },
+      { name: 'Delaware', href: '/states/delaware' },
+      { name: 'California', href: '/states/california' },
+      { name: 'New York', href: '/states/new-york' },
+      { name: 'Texas', href: '/states/texas' },
+      { name: 'All States', href: '/states' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { name: 'Blog', href: '/resources/blog' },
-      { name: 'Glossary', href: '/resources/glossary' },
-      { name: 'FAQ', href: '/resources/faq' },
-      { name: 'Tools & Calculators', href: '/resources/tools' },
+      { name: 'Glossary', href: '/glossary' },
+      { name: 'About', href: '/about' },
+      { name: 'Contact', href: '/contact' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Legal',
     links: [
-      { name: 'About', href: '/about' },
-      { name: 'Contact', href: '/contact' },
-      { name: 'Privacy', href: '/privacy' },
-      { name: 'Terms', href: '/terms' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Use', href: '/terms' },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-nexus-dark text-white">
+    <footer className="bg-dark text-white">
       <div className="container-wide section-padding">
         {/* Top section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="text-sm font-semibold text-nexus-gray-500 uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-3">
@@ -57,7 +54,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-nexus-gray-300 hover:text-nexus-lime transition-colors hover:no-underline"
+                      className="text-sm text-slate-400 hover:text-accent transition-colors hover:no-underline"
                     >
                       {link.name}
                     </Link>
@@ -70,27 +67,28 @@ export function Footer() {
 
         {/* Bottom section */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <div className="w-6 h-6 rounded bg-gradient-brand flex items-center justify-center">
-              <span className="text-white font-bold text-xs">GN</span>
+              <span className="text-white font-bold text-xs">US</span>
             </div>
             <span className="text-sm font-semibold text-white">
-              Global<span className="text-nexus-purple">Payroll</span>Nexus
+              US Payroll <span className="text-primary-light">Guide</span>
             </span>
           </div>
-          <p className="text-sm text-nexus-gray-500">
-            &copy; {new Date().getFullYear()} Global Payroll Nexus. All rights reserved.
+          <p className="text-sm text-slate-500">
+            &copy; {new Date().getFullYear()} US Payroll Guide. All rights reserved.
           </p>
-          <p className="text-xs text-nexus-gray-500">
-            Built with expertise from{' '}
+          <p className="text-xs text-slate-500">
+            Published by{' '}
             <a
               href="https://www.teamed.global/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-nexus-purple hover:text-nexus-lime transition-colors hover:no-underline"
+              className="text-primary-light hover:text-accent transition-colors hover:no-underline"
             >
               Teamed
             </a>
+            {' '}&mdash; global employment, done properly.
           </p>
         </div>
       </div>

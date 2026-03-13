@@ -36,7 +36,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
 
   return (
     <nav className="sticky top-24" aria-label="Table of contents">
-      <p className="text-xs font-semibold text-nexus-gray-500 uppercase tracking-wider mb-3">
+      <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
         On this page
       </p>
       <ul className="space-y-0.5">

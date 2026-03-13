@@ -4,46 +4,38 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const primaryNav = [
-  { name: 'EOR Guide', href: '/employer-of-record' },
-  { name: 'Global Payroll', href: '/global-payroll' },
+const guidesDropdownItems = [
+  { name: 'Entity Formation', href: '/entity-formation', description: 'Setting up a US subsidiary as a foreign company' },
+  { name: 'US Payroll', href: '/us-payroll', description: 'Running payroll in the US — taxes, providers, compliance' },
+  { name: 'Foreign-Ownership Compliance', href: '/compliance', description: 'Form 5472, transfer pricing, pro forma 1120' },
+  { name: 'Employee Benefits', href: '/benefits', description: 'Health insurance, 401(k), PTO, and employment law' },
 ];
 
-const countryDropdownItems = [
-  { name: 'Hire in the UK', href: '/countries/united-kingdom', description: 'Employment law, payroll, and compliance' },
-  { name: 'Hire in Germany', href: '/countries/germany', description: 'Entity requirements and social contributions' },
-  { name: 'Hire in the USA', href: '/countries/united-states', description: 'State-by-state payroll complexity' },
-  { name: 'Hire in France', href: '/countries/france', description: 'Labour law and mandatory benefits' },
-  { name: 'All Countries', href: '/countries', description: 'Browse all country guides' },
-];
-
-const learnDropdownItems = [
-  { name: 'EOR vs Entity', href: '/eor-vs-entity', description: 'When to use an EOR vs setting up your own entity' },
-  { name: 'Contractor Compliance', href: '/contractor-compliance', description: 'Misclassification risks and how to avoid them' },
-  { name: 'Payroll Compliance', href: '/payroll-compliance', description: 'Statutory requirements across jurisdictions' },
-  { name: 'Glossary', href: '/resources/glossary', description: 'Global employment terms defined' },
-];
-
-const secondaryNav = [
-  { name: 'Resources', href: '/resources' },
+const statesDropdownItems = [
+  { name: 'Delaware', href: '/states/delaware' },
+  { name: 'California', href: '/states/california' },
+  { name: 'New York', href: '/states/new-york' },
+  { name: 'Texas', href: '/states/texas' },
+  { name: 'Florida', href: '/states/florida' },
+  { name: 'All States', href: '/states' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
-  const [learnDropdownOpen, setLearnDropdownOpen] = useState(false);
-  const countryRef = useRef<HTMLDivElement>(null);
-  const learnRef = useRef<HTMLDivElement>(null);
-  const countryTimeout = useRef<NodeJS.Timeout | null>(null);
-  const learnTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [guidesOpen, setGuidesOpen] = useState(false);
+  const [statesOpen, setStatesOpen] = useState(false);
+  const guidesRef = useRef<HTMLDivElement>(null);
+  const statesRef = useRef<HTMLDivElement>(null);
+  const guidesTimeout = useRef<NodeJS.Timeout | null>(null);
+  const statesTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (countryRef.current && !countryRef.current.contains(event.target as Node)) {
-        setCountryDropdownOpen(false);
+      if (guidesRef.current && !guidesRef.current.contains(event.target as Node)) {
+        setGuidesOpen(false);
       }
-      if (learnRef.current && !learnRef.current.contains(event.target as Node)) {
-        setLearnDropdownOpen(false);
+      if (statesRef.current && !statesRef.current.contains(event.target as Node)) {
+        setStatesOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -51,52 +43,39 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-nexus-gray-200">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-border">
       <nav className="container-wide flex items-center justify-between py-4">
-        <Link href="/" className="flex items-center gap-2 hover:no-underline shrink-0">
-          {/* Geometric logo placeholder — purple gradient circle */}
+        <Link href="/" className="flex items-center gap-2.5 hover:no-underline shrink-0">
           <div className="w-8 h-8 rounded-lg bg-gradient-brand flex items-center justify-center">
-            <span className="text-white font-bold text-sm">GN</span>
+            <span className="text-white font-bold text-sm">US</span>
           </div>
-          <span className="text-lg font-bold text-nexus-gray-900 hidden sm:inline">
-            Global<span className="text-gradient">Payroll</span>Nexus
+          <span className="text-lg font-bold text-text hidden sm:inline">
+            US Payroll <span className="text-primary">Guide</span>
           </span>
-          <span className="text-lg font-bold sm:hidden">
-            <span className="text-gradient">GPN</span>
-          </span>
+          <span className="text-lg font-bold text-primary sm:hidden">USP</span>
         </Link>
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex items-center gap-1">
-          {primaryNav.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="px-3 py-2 text-sm font-medium text-nexus-gray-700 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all hover:no-underline"
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          {/* Country Guides dropdown */}
+          {/* Guides dropdown */}
           <div
-            ref={countryRef}
+            ref={guidesRef}
             className="relative"
             onMouseEnter={() => {
-              if (countryTimeout.current) clearTimeout(countryTimeout.current);
-              setCountryDropdownOpen(true);
+              if (guidesTimeout.current) clearTimeout(guidesTimeout.current);
+              setGuidesOpen(true);
             }}
             onMouseLeave={() => {
-              countryTimeout.current = setTimeout(() => setCountryDropdownOpen(false), 150);
+              guidesTimeout.current = setTimeout(() => setGuidesOpen(false), 150);
             }}
           >
             <button
-              onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-nexus-gray-700 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all"
+              onClick={() => setGuidesOpen(!guidesOpen)}
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
             >
-              Country Guides
+              Guides
               <motion.svg
-                animate={{ rotate: countryDropdownOpen ? 180 : 0 }}
+                animate={{ rotate: guidesOpen ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="w-4 h-4"
                 fill="none"
@@ -109,26 +88,26 @@ export function Header() {
             </button>
 
             <AnimatePresence>
-              {countryDropdownOpen && (
+              {guidesOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: -8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.96 }}
                   transition={{ duration: 0.15, ease: 'easeOut' }}
-                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-nexus-gray-200 overflow-hidden"
+                  className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-border overflow-hidden"
                 >
                   <div className="p-2">
-                    {countryDropdownItems.map((item) => (
+                    {guidesDropdownItems.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        onClick={() => setCountryDropdownOpen(false)}
-                        className="block px-4 py-3 rounded-lg hover:bg-nexus-gray-100 transition-colors hover:no-underline group"
+                        onClick={() => setGuidesOpen(false)}
+                        className="block px-4 py-3 rounded-lg hover:bg-surface-alt transition-colors hover:no-underline group"
                       >
-                        <span className="block text-sm font-medium text-nexus-gray-900 group-hover:text-nexus-purple transition-colors">
+                        <span className="block text-sm font-medium text-text group-hover:text-primary transition-colors">
                           {item.name}
                         </span>
-                        <span className="block text-xs text-nexus-gray-500 mt-0.5">
+                        <span className="block text-xs text-text-muted mt-0.5">
                           {item.description}
                         </span>
                       </Link>
@@ -139,25 +118,25 @@ export function Header() {
             </AnimatePresence>
           </div>
 
-          {/* Learn dropdown */}
+          {/* States dropdown */}
           <div
-            ref={learnRef}
+            ref={statesRef}
             className="relative"
             onMouseEnter={() => {
-              if (learnTimeout.current) clearTimeout(learnTimeout.current);
-              setLearnDropdownOpen(true);
+              if (statesTimeout.current) clearTimeout(statesTimeout.current);
+              setStatesOpen(true);
             }}
             onMouseLeave={() => {
-              learnTimeout.current = setTimeout(() => setLearnDropdownOpen(false), 150);
+              statesTimeout.current = setTimeout(() => setStatesOpen(false), 150);
             }}
           >
             <button
-              onClick={() => setLearnDropdownOpen(!learnDropdownOpen)}
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-nexus-gray-700 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all"
+              onClick={() => setStatesOpen(!statesOpen)}
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
             >
-              Learn
+              States
               <motion.svg
-                animate={{ rotate: learnDropdownOpen ? 180 : 0 }}
+                animate={{ rotate: statesOpen ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="w-4 h-4"
                 fill="none"
@@ -170,28 +149,23 @@ export function Header() {
             </button>
 
             <AnimatePresence>
-              {learnDropdownOpen && (
+              {statesOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: -8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.96 }}
                   transition={{ duration: 0.15, ease: 'easeOut' }}
-                  className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-nexus-gray-200 overflow-hidden"
+                  className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-border overflow-hidden"
                 >
                   <div className="p-2">
-                    {learnDropdownItems.map((item) => (
+                    {statesDropdownItems.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        onClick={() => setLearnDropdownOpen(false)}
-                        className="block px-4 py-3 rounded-lg hover:bg-nexus-gray-100 transition-colors hover:no-underline group"
+                        onClick={() => setStatesOpen(false)}
+                        className="block px-4 py-2.5 text-sm font-medium text-text hover:text-primary hover:bg-surface-alt rounded-lg transition-colors hover:no-underline"
                       >
-                        <span className="block text-sm font-medium text-nexus-gray-900 group-hover:text-nexus-purple transition-colors">
-                          {item.name}
-                        </span>
-                        <span className="block text-xs text-nexus-gray-500 mt-0.5">
-                          {item.description}
-                        </span>
+                        {item.name}
                       </Link>
                     ))}
                   </div>
@@ -200,31 +174,35 @@ export function Header() {
             </AnimatePresence>
           </div>
 
-          {secondaryNav.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="px-3 py-2 text-sm font-medium text-nexus-gray-700 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all hover:no-underline"
-            >
-              {item.name}
-            </Link>
-          ))}
+          <Link
+            href="/glossary"
+            className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all hover:no-underline"
+          >
+            Glossary
+          </Link>
+
+          <Link
+            href="/about"
+            className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all hover:no-underline"
+          >
+            About
+          </Link>
 
           {/* CTA */}
           <a
             href="https://www.teamed.global/contact-teamed"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 px-4 py-2 text-sm font-medium text-nexus-dark bg-nexus-lime rounded-lg hover:bg-nexus-lime-dark transition-colors hover:no-underline"
+            className="ml-2 px-4 py-2 text-sm font-medium text-dark bg-accent rounded-lg hover:bg-accent-dark transition-colors hover:no-underline"
           >
-            Get Expert Help
+            Talk to a Specialist
           </a>
         </div>
 
         {/* Mobile menu button */}
         <button
           type="button"
-          className="lg:hidden p-2 text-nexus-gray-700 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all"
+          className="lg:hidden p-2 text-text-secondary hover:text-primary hover:bg-surface-alt rounded-lg transition-all"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -272,13 +250,13 @@ export function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="lg:hidden border-t border-nexus-gray-200 bg-white overflow-hidden"
+            className="lg:hidden border-t border-border bg-white overflow-hidden"
           >
             <div className="container-wide py-4">
               <div className="mb-4">
-                <p className="text-xs font-semibold text-nexus-gray-500 uppercase tracking-wider mb-2 px-2">Guides</p>
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2 px-2">Guides</p>
                 <div className="space-y-1">
-                  {primaryNav.map((item, index) => (
+                  {guidesDropdownItems.map((item, index) => (
                     <motion.div
                       key={item.name}
                       initial={{ opacity: 0, x: -20 }}
@@ -288,55 +266,32 @@ export function Header() {
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2.5 text-base font-medium text-nexus-gray-900 hover:text-nexus-purple hover:bg-nexus-gray-100 rounded-lg transition-all hover:no-underline"
+                        className="block px-3 py-2.5 rounded-lg hover:bg-surface-alt transition-all hover:no-underline"
+                      >
+                        <span className="block text-base font-medium text-text">{item.name}</span>
+                        <span className="block text-sm text-text-muted">{item.description}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2 px-2">State Guides</p>
+                <div className="grid grid-cols-2 gap-1">
+                  {statesDropdownItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (index + 4) * 0.05 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-3 py-2.5 text-base font-medium text-text hover:text-primary hover:bg-surface-alt rounded-lg transition-all hover:no-underline"
                       >
                         {item.name}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-nexus-gray-500 uppercase tracking-wider mb-2 px-2">Country Guides</p>
-                <div className="space-y-1">
-                  {countryDropdownItems.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (index + 2) * 0.05 }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2.5 rounded-lg hover:bg-nexus-gray-100 transition-all hover:no-underline"
-                      >
-                        <span className="block text-base font-medium text-nexus-gray-900">{item.name}</span>
-                        <span className="block text-sm text-nexus-gray-500">{item.description}</span>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-nexus-gray-500 uppercase tracking-wider mb-2 px-2">Learn</p>
-                <div className="space-y-1">
-                  {learnDropdownItems.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (index + 7) * 0.05 }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2.5 rounded-lg hover:bg-nexus-gray-100 transition-all hover:no-underline"
-                      >
-                        <span className="block text-base font-medium text-nexus-gray-900">{item.name}</span>
-                        <span className="block text-sm text-nexus-gray-500">{item.description}</span>
                       </Link>
                     </motion.div>
                   ))}
@@ -347,16 +302,16 @@ export function Header() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="pt-4 border-t border-nexus-gray-200"
+                className="pt-4 border-t border-border"
               >
                 <a
                   href="https://www.teamed.global/contact-teamed"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-4 py-3 text-base font-medium text-nexus-dark bg-nexus-lime rounded-lg hover:bg-nexus-lime-dark transition-colors hover:no-underline"
+                  className="block w-full text-center px-4 py-3 text-base font-medium text-dark bg-accent rounded-lg hover:bg-accent-dark transition-colors hover:no-underline"
                 >
-                  Get Expert Help
+                  Talk to a US Payroll Specialist
                 </a>
               </motion.div>
             </div>

@@ -16,7 +16,6 @@ interface FaqAccordionProps {
 export function FaqAccordion({ items, className = '' }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Generate FAQPage JSON-LD
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -40,19 +39,19 @@ export function FaqAccordion({ items, className = '' }: FaqAccordionProps) {
         {items.map((item, index) => (
           <div
             key={index}
-            className="border border-nexus-gray-200 rounded-xl overflow-hidden bg-white"
+            className="border border-border rounded-xl overflow-hidden bg-white"
           >
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-nexus-gray-100 transition-colors"
+              className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface-alt transition-colors"
             >
-              <span className="text-base font-medium text-nexus-gray-900 pr-4">
+              <span className="text-base font-medium text-text pr-4">
                 {item.question}
               </span>
               <motion.svg
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="w-5 h-5 text-nexus-gray-500 shrink-0"
+                className="w-5 h-5 text-text-muted shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -70,7 +69,7 @@ export function FaqAccordion({ items, className = '' }: FaqAccordionProps) {
                   transition={{ duration: 0.2, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-4 text-nexus-gray-700 leading-relaxed">
+                  <div className="px-6 pb-4 text-text-secondary leading-relaxed">
                     {item.answer}
                   </div>
                 </motion.div>

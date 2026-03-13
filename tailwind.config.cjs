@@ -7,39 +7,37 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary — Teamed-inspired palette
-        'nexus-purple': '#966EFF',       // Primary purple
-        'nexus-purple-deep': '#7B4FE0',  // Darker purple for hover
-        'nexus-coral': '#FF8E6E',        // Gradient endpoint / warm accent
-        'nexus-dark': '#121213',         // Near-black background
-        // Accent
-        'nexus-lime': '#C1FA6B',         // Lime green accent (CTAs, highlights)
-        'nexus-lime-dark': '#A8E050',    // Darker lime for hover
-        // Neutrals
-        'nexus-white': '#FFFFFF',
-        'nexus-offwhite': '#F8F8FA',     // Light background
-        'nexus-gray-100': '#F1F1F4',     // Card backgrounds
-        'nexus-gray-200': '#E2E2E8',     // Borders
-        'nexus-gray-300': '#CECECE',     // Dividers
-        'nexus-gray-500': '#A7A7A7',     // Muted text
-        'nexus-gray-700': '#4A4A52',     // Secondary text
-        'nexus-gray-900': '#1A1A1F',     // Primary text
-        // Brand aliases
-        brand: {
-          primary: '#966EFF',
-          dark: '#121213',
-          accent: '#C1FA6B',
-          warm: '#FF8E6E',
-          text: '#1A1A1F',
-        },
+        // Primary — slate blue (financial trust)
+        primary: '#2D5A7B',
+        'primary-deep': '#1E3F56',
+        'primary-light': '#3A7BA8',
+        // Accents
+        accent: '#C1FA6B',          // Lime green (CTAs, highlights)
+        'accent-dark': '#A8E050',   // Darker lime for hover
+        'accent-warm': '#FF8E6E',   // Coral (compliance warnings, penalties)
+        'accent-warm-dark': '#E07A5A',
+        // Dark
+        dark: '#0F1B24',
+        'dark-surface': '#162A38',
+        // Surface & neutrals
+        surface: '#F7F9FB',
+        'surface-alt': '#EEF2F6',
+        border: '#E2E8F0',
+        'border-dark': '#CBD5E1',
+        // Text
+        text: '#1A2B3B',
+        'text-secondary': '#5A7184',
+        'text-muted': '#8899A8',
+        white: '#FFFFFF',
       },
       fontFamily: {
-        sans: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-brand': 'linear-gradient(135deg, #966EFF 0%, #FF8E6E 100%)',
-        'gradient-brand-hover': 'linear-gradient(135deg, #7B4FE0 0%, #E07A5A 100%)',
-        'gradient-dark': 'linear-gradient(180deg, #121213 0%, #1A1A2E 100%)',
+        'gradient-brand': 'linear-gradient(135deg, #2D5A7B 0%, #3A7BA8 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #C1FA6B 0%, #A8E050 100%)',
+        'gradient-dark': 'linear-gradient(180deg, #0F1B24 0%, #162A38 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #FF8E6E 0%, #E07A5A 100%)',
       },
       borderRadius: {
         'xl': '12px',

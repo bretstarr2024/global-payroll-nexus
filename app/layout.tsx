@@ -1,26 +1,27 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-montserrat',
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://globalpayrollnexus.com'),
+  metadataBase: new URL('https://uspayrollguide.com'),
   title: {
-    default: 'Global Payroll Nexus | International Payroll, EOR & Compliance Guide',
-    template: '%s | Global Payroll Nexus',
+    default: 'US Payroll Guide | Payroll & Compliance for Foreign-Owned Companies',
+    template: '%s | US Payroll Guide',
   },
-  description: 'The definitive resource for international payroll, employer of record, and global employment compliance. Country guides, compliance frameworks, and expert analysis.',
-  keywords: ['global payroll', 'international payroll', 'employer of record', 'EOR', 'global employment', 'payroll compliance', 'international hiring'],
-  authors: [{ name: 'Global Payroll Nexus' }],
-  creator: 'Global Payroll Nexus',
-  publisher: 'Global Payroll Nexus',
+  description: 'The definitive resource for UK and European companies expanding to the US. Entity formation, payroll setup, Form 5472 compliance, and employment law — explained by specialists.',
+  keywords: ['US payroll', 'foreign-owned company', 'Form 5472', 'US entity formation', 'US employment law', 'EOR vs entity', 'multi-state payroll', 'transfer pricing'],
+  authors: [{ name: 'US Payroll Guide' }],
+  creator: 'US Payroll Guide',
+  publisher: 'US Payroll Guide',
   formatDetection: {
     email: false,
     address: false,
@@ -29,23 +30,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://globalpayrollnexus.com',
-    siteName: 'Global Payroll Nexus',
-    title: 'Global Payroll Nexus | International Payroll, EOR & Compliance Guide',
-    description: 'The definitive resource for international payroll, employer of record, and global employment compliance.',
+    url: 'https://uspayrollguide.com',
+    siteName: 'US Payroll Guide',
+    title: 'US Payroll Guide | Payroll & Compliance for Foreign-Owned Companies',
+    description: 'The definitive resource for UK and European companies expanding to the US. Entity formation, payroll, compliance, and employment law.',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Global Payroll Nexus',
+        alt: 'US Payroll Guide',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Global Payroll Nexus | International Payroll, EOR & Compliance Guide',
-    description: 'The definitive resource for international payroll, employer of record, and global employment compliance.',
+    title: 'US Payroll Guide | Payroll & Compliance for Foreign-Owned Companies',
+    description: 'The definitive resource for UK and European companies expanding to the US.',
     images: ['/twitter-image.png'],
   },
   robots: {
@@ -67,11 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={montserrat.variable}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col font-sans">
         <Header />
         <main className="flex-1">{children}</main>

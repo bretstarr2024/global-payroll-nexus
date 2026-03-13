@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { AnimatedSection } from '@/components/AnimatedSection';
 
 export const metadata: Metadata = {
-  title: 'About Global Payroll Nexus',
-  description: 'Global Payroll Nexus is an independent knowledge resource for companies hiring internationally. Built with expertise from global employment practitioners.',
+  title: 'About US Payroll Guide',
+  description: 'US Payroll Guide is an independent resource for UK and European companies expanding to the United States. Published by Teamed.',
 };
 
 export default function AboutPage() {
@@ -11,43 +11,61 @@ export default function AboutPage() {
     <div className="section-padding">
       <div className="container-narrow">
         <AnimatedSection>
-          <h1 className="text-4xl md:text-5xl font-bold text-nexus-gray-900 mb-6">
-            About Global Payroll Nexus
+          <h1 className="text-4xl md:text-5xl font-bold text-text mb-6">
+            About US Payroll Guide
           </h1>
-          <div className="prose-custom">
+          <div className="answer-block">
             <p>
-              Global Payroll Nexus is an independent knowledge resource for companies hiring internationally. We exist because most information about global employment is either too vague to be useful, too salesy to be trusted, or too outdated to be safe.
-            </p>
-            <p>
-              We publish country-by-country payroll guides, compliance frameworks, EOR comparisons, and practical analysis — written by people who actually do this work, not content marketers who googled it.
-            </p>
-            <h2>What we cover</h2>
-            <ul>
-              <li><strong>Employer of Record (EOR)</strong> — how it works, when to use it, how to choose a provider</li>
-              <li><strong>Global Payroll</strong> — multi-country payroll mechanics, compliance, and provider models</li>
-              <li><strong>Country Guides</strong> — employment law, employer costs, statutory benefits, and hiring requirements by country</li>
-              <li><strong>Contractor Compliance</strong> — misclassification risks, classification frameworks, and how to stay legal</li>
-              <li><strong>Entity Formation</strong> — when to set up your own entity and how the economics compare to EOR</li>
-            </ul>
-            <h2>Our editorial approach</h2>
-            <p>
-              We follow three rules:
-            </p>
-            <ol>
-              <li><strong>Answer first.</strong> Every page leads with the answer, not the preamble. If you came here with a question, you should find the answer in the first paragraph.</li>
-              <li><strong>Be specific.</strong> &ldquo;Employer costs vary by country&rdquo; is not useful. &ldquo;Employer costs in France add 40-45% on top of gross salary&rdquo; is.</li>
-              <li><strong>Say what we don&apos;t know.</strong> Compliance is complex. When the answer depends on specific circumstances, we say so rather than oversimplifying.</li>
-            </ol>
-            <h2>Built with expertise</h2>
-            <p>
-              This site is built with knowledge and expertise from{' '}
-              <a href="https://www.teamed.global/" target="_blank" rel="noopener noreferrer">
-                Teamed
-              </a>
-              , a global employment platform that manages EOR, contractor compliance, global payroll, and entity services across 150+ countries.
+              US Payroll Guide is an independent resource for companies headquartered outside the United States that are hiring their first US employees. We focus on what generic payroll guides miss: the specific compliance obligations, entity structures, and tax requirements that apply to foreign-owned companies operating in America.
             </p>
           </div>
         </AnimatedSection>
+
+        <div className="prose-custom mt-8">
+          <AnimatedSection>
+            <h2>Why this exists</h2>
+            <p>
+              The US is the most common expansion market for UK and European companies. But the guidance available to foreign companies setting up in America is fragmented, generic, or buried in legal jargon.
+            </p>
+            <p>
+              US payroll platforms like Gusto and Rippling serve domestic companies well — but they don&apos;t address the specific obligations that come with foreign ownership. Global EOR providers like Deel and Remote offer partial solutions — but they don&apos;t go deep on US-specific compliance like Form 5472, transfer pricing documentation, or multi-state employer registration.
+            </p>
+            <p>
+              This site fills that gap. Every guide is written specifically for the scenario of a non-US company expanding into the American market.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection>
+            <h2>What we cover</h2>
+            <ul>
+              <li><strong>Entity formation</strong> — how to set up a US subsidiary (LLC vs C-Corp, state selection, EIN, bank accounts)</li>
+              <li><strong>US payroll</strong> — federal and state tax withholding, pay schedules, multi-state complexity, provider selection</li>
+              <li><strong>Foreign-ownership compliance</strong> — Form 5472, transfer pricing, pro forma 1120, and the obligations that catch foreign companies off guard</li>
+              <li><strong>Benefits and employment law</strong> — health insurance, retirement plans, and the US employment law concepts that differ from UK/EU norms</li>
+              <li><strong>State-by-state guides</strong> — employer registration, tax rates, and employment law for the states where foreign companies most commonly hire</li>
+            </ul>
+          </AnimatedSection>
+
+          <AnimatedSection>
+            <h2>Published by Teamed</h2>
+            <p>
+              This resource is published by <a href="https://www.teamed.global/" target="_blank" rel="noopener noreferrer">Teamed</a>, a global employment company based in London. Teamed helps companies hire, pay, and manage employees across borders — including companies expanding to the United States.
+            </p>
+            <p>
+              The content on this site is editorially independent. We write what we believe to be accurate and useful, not what sells a particular product. Where Teamed offers a relevant service, we&apos;ll link to it — clearly marked, never disguised.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection>
+            <h2>Contact</h2>
+            <p>
+              If you have questions about US expansion, payroll setup, or foreign-ownership compliance, you can <a href="https://www.teamed.global/contact-teamed" target="_blank" rel="noopener noreferrer">speak with a Teamed specialist</a>.
+            </p>
+            <p>
+              For questions about the content on this site, reach us at <a href="/contact">our contact page</a>.
+            </p>
+          </AnimatedSection>
+        </div>
       </div>
     </div>
   );

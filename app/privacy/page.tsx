@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy for Global Payroll Nexus.',
+  description: 'Privacy policy for US Payroll Guide.',
 };
 
 export default function PrivacyPage() {
@@ -10,29 +10,43 @@ export default function PrivacyPage() {
     <div className="section-padding">
       <div className="container-narrow prose-custom">
         <h1>Privacy Policy</h1>
-        <p className="text-sm text-nexus-gray-500">Last updated: March 2026</p>
+        <p className="text-sm text-text-muted">Last updated: March 2026</p>
+
+        <h2>Who we are</h2>
         <p>
-          Global Payroll Nexus (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) respects your privacy. This policy explains what information we collect, how we use it, and your rights.
+          US Payroll Guide is published by Teamed Ltd, a company registered in England and Wales. Our website address is: https://uspayrollguide.com
         </p>
-        <h2>Information we collect</h2>
+
+        <h2>What data we collect</h2>
         <p>
-          We collect standard web analytics data (page views, device type, referral source) through privacy-respecting analytics tools. We do not collect personally identifiable information unless you voluntarily provide it (e.g., through a contact form).
+          We collect minimal data to operate this website:
         </p>
-        <h2>How we use information</h2>
+        <ul>
+          <li><strong>Analytics data:</strong> We use Google Analytics to understand how visitors use the site. This includes anonymised page views, referral sources, and device types.</li>
+          <li><strong>Contact form data:</strong> If you submit a contact form or consultation request, we collect your name, email address, company name, and any message you provide.</li>
+        </ul>
+
+        <h2>How we use your data</h2>
+        <ul>
+          <li>To improve the content and usability of this site</li>
+          <li>To respond to consultation requests and enquiries</li>
+          <li>To send relevant updates if you opt in to communications</li>
+        </ul>
+
+        <h2>Third parties</h2>
         <p>
-          Analytics data is used to understand which content is most useful and to improve the site. We do not sell, rent, or share your data with third parties for marketing purposes.
+          Contact form submissions may be shared with Teamed Ltd for the purpose of responding to your enquiry. We do not sell personal data to third parties.
         </p>
+
+        <h2>Your rights</h2>
+        <p>
+          Under GDPR, you have the right to access, correct, or delete your personal data. Contact us at{' '}
+          <a href="https://www.teamed.global/contact-teamed" target="_blank" rel="noopener noreferrer">teamed.global</a> to exercise these rights.
+        </p>
+
         <h2>Cookies</h2>
         <p>
-          We use essential cookies for site functionality and analytics cookies to understand usage patterns. You can control cookie settings in your browser.
-        </p>
-        <h2>External links</h2>
-        <p>
-          This site contains links to external websites (including teamed.global). We are not responsible for the privacy practices of those sites.
-        </p>
-        <h2>Contact</h2>
-        <p>
-          Questions about this privacy policy? Contact us at privacy@globalpayrollnexus.com.
+          This site uses essential cookies for functionality and analytics cookies (Google Analytics) for usage statistics. You can disable cookies in your browser settings.
         </p>
       </div>
     </div>
