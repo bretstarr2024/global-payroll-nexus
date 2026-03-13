@@ -13,7 +13,7 @@ const sections = [
     description: 'In-depth articles on US payroll, entity formation, compliance obligations, and employment law — written specifically for UK and European companies entering the US market.',
     href: '/resources/blog',
     cta: 'Browse articles',
-    badge: '3 articles',
+    badge: '14 articles',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
@@ -37,7 +37,7 @@ const sections = [
     description: 'Answers to the most common questions from UK and European companies about hiring, payroll, entity formation, and compliance in the United States.',
     href: '/resources/faq',
     cta: 'Read FAQs',
-    badge: '24 questions across 5 categories',
+    badge: '48 questions across 6 categories',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
@@ -49,7 +49,7 @@ const sections = [
     description: 'US payroll, tax, and employment terms explained in plain English — for companies headquartered outside the United States. FICA, FUTA, EIN, W-4, and more.',
     href: '/resources/glossary',
     cta: 'Browse terms',
-    badge: '21 terms',
+    badge: '41 terms',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />

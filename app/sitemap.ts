@@ -7,6 +7,23 @@ const states = [
   'massachusetts', 'washington', 'illinois', 'colorado', 'georgia',
 ];
 
+const blogPosts = [
+  'why-foreign-companies-get-form-5472-wrong',
+  'llc-vs-c-corp-foreign-company',
+  'first-us-hire-payroll-checklist',
+  'understanding-fica-futa-suta',
+  'state-nexus-remote-employees',
+  'us-health-insurance-foreign-employers',
+  'registered-agent-guide',
+  'ein-application-foreign-companies',
+  'transfer-pricing-foreign-subsidiaries',
+  'at-will-employment-european-employers',
+  'multi-state-payroll-compliance',
+  'corporate-transparency-act-foreign-companies',
+  'us-contractor-vs-employee-foreign-companies',
+  'us-business-bank-account-foreign-company',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 1.0 },
@@ -22,9 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/resources/faq`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE_URL}/resources/glossary`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${BASE_URL}/resources/news`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.7 },
-    { url: `${BASE_URL}/resources/blog/why-foreign-companies-get-form-5472-wrong`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
-    { url: `${BASE_URL}/resources/blog/llc-vs-c-corp-foreign-company`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
-    { url: `${BASE_URL}/resources/blog/first-us-hire-payroll-checklist`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.4 },
     { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.5 },
     { url: `${BASE_URL}/privacy`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.2 },
@@ -38,5 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...statePages];
+  const blogPages = blogPosts.map((slug) => ({
+    url: `${BASE_URL}/resources/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...statePages, ...blogPages];
 }

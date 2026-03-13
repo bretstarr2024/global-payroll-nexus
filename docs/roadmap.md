@@ -1,6 +1,6 @@
 # US Payroll Guide — Roadmap
 
-**Last Updated:** 2026-03-13 (Session IV)
+**Last Updated:** 2026-03-13 (Session V)
 
 ---
 
@@ -39,6 +39,12 @@
 - [x] Resources hub page upgraded with rich cards, descriptions, counts, and CTAs (Session IV)
 - [x] Resources nav label links to /resources hub with "View all resources" in dropdown (Session IV)
 - [x] Card design standardized across homepage, blog, guides, and states pages (Session IV)
+- [x] **Massive content expansion (Session V):**
+  - Blog: 3 → 14 articles (11 new full-length articles with FAQs and schema)
+  - News: 5 → 20 items (15 new regulatory/compliance updates)
+  - FAQ: 24 → 48 questions across 6 categories (new Contractor Classification category)
+  - Glossary: 21 → 41 terms (20 new terms)
+  - Sitemap: 36 → 47 pages
 - [ ] Add Organization + BreadcrumbList JSON-LD schema
 - [ ] Add "Last updated" timestamps to all content pages
 - [ ] Strengthen internal linking between pillar pages
