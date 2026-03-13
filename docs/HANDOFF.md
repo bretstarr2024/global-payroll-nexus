@@ -1,6 +1,38 @@
 # Session Handoff: US Payroll Guide
 
-**Last Updated:** 2026-03-13 (Session IV)
+**Last Updated:** 2026-03-13 (Session V)
+
+---
+
+## Session V — 2026-03-13
+
+### What was done this session
+1. **Massive content expansion** — site went from 36 to 47 pages:
+   - **Blog: 3 → 14 articles** — 11 new full-length posts with complete content, tables, FAQs, and FAQPage schema. Topics: FICA/FUTA/SUTA explainer, state nexus & remote employees, US health insurance for foreign employers, registered agents guide, EIN application process, transfer pricing practical guide, at-will employment for European employers, multi-state payroll compliance, Corporate Transparency Act, contractor vs employee classification, opening a US bank account.
+   - **News: 5 → 20 items** — 15 new regulatory/compliance updates covering IRS enforcement, AFR rates, California minimum wage, FinCEN BOI guidance, NY paid prenatal leave, DOL overtime threshold, Washington pay transparency, EEOC AI hiring guidance, Illinois paid leave, FUTA credit reduction states, Delaware franchise tax, Massachusetts PFML rates, OECD Pillar Two.
+   - **FAQ: 24 → 48 questions across 6 categories** — new Contractor Classification category (4 questions), 4 new questions added to each existing category (Entity Formation, US Payroll, Foreign-Ownership Compliance, Benefits & Employment Law, State-Specific).
+   - **Glossary: 21 → 41 terms** — 20 new terms including 1099-NEC, ACA, AFR, Arm's Length, BOI, COBRA, CTA, Disregarded Entity, FinCEN, Foreign Entity Registration, Form 940, Form 941, Form SS-4, Form W-2, Form W-8BEN-E, Non-Compete, PEO, QSEHRA, WARN Act, Workers' Compensation.
+2. **Sitemap updated** — 47 pages (11 new blog post URLs added)
+3. **Resources hub counts updated** — 14 articles, 48 questions across 6 categories, 41 terms
+
+### Current state
+- **Build**: PASSING (47 pages)
+- **Deploy**: Vercel — us-payroll-guide.vercel.app (auto-deploy on push)
+- **Domain**: uspayrollguide.com — NOT YET REGISTERED
+- **Git**: github.com/bretstarr2024/global-payroll-nexus (repo name still needs updating)
+- **Content**: All static, in-page. Blog posts hardcoded in components. No MongoDB integration yet.
+- **Version**: 1.3.0
+
+### What's next (priority order)
+1. Register uspayrollguide.com and add as custom domain in Vercel
+2. Rename GitHub repo
+3. Add Organization + BreadcrumbList JSON-LD
+4. Add OG images for social sharing
+5. Strengthen internal linking between pillar pages and new blog posts
+6. Add last-updated timestamps
+7. Run /audit baseline
+8. Review Chloé voice consistency across new content
+9. Consider blog pagination (14 posts now)
 
 ---
 

@@ -1,0 +1,92 @@
+session_id: "V"
+date: "2026-03-13"
+branch: main
+version: "1.3.0"  # Minor: massive content expansion — 11 new blog posts, 15 news items, 24 FAQs, 20 glossary terms
+
+deployment:
+  platform: "Vercel"
+  status: "auto-deploy on push — us-payroll-guide.vercel.app"
+
+build_verification:
+  next_build: PASS
+  pages_generated: 47
+  errors: 0
+
+data_structure_consistency:
+  status: "not modified — no MongoDB or data model changes"
+
+commits:
+  - hash: "0b49c9f"
+    message: "content: Massive content expansion — 14 blog posts, 20 news items, 48 FAQs, 41 glossary terms"
+
+artifacts_updated:
+  - app/resources/blog/[slug]/page.tsx  # 11 new full-length blog posts with FAQs
+  - app/resources/blog/page.tsx         # Blog listing updated with 14 posts
+  - app/resources/news/page.tsx         # 15 new news items (20 total)
+  - app/resources/faq/page.tsx          # 24 new FAQs + new Contractor Classification category (48 total)
+  - app/resources/glossary/page.tsx     # 20 new glossary terms (41 total)
+  - app/resources/page.tsx              # Updated badge counts on Resources hub
+  - app/sitemap.ts                      # 11 new blog post URLs (47 pages total)
+  - docs/roadmap.md                     # Updated with Session V work
+
+decisions_made:
+  - decision: "Add 11 new blog posts as full in-page content (not MongoDB-backed)"
+    rationale: "Consistent with existing pattern — all content is static in-page. MongoDB migration deferred to Phase 4."
+    reversible: true
+  - decision: "Add Contractor Classification as 6th FAQ category"
+    rationale: "Contractor vs employee classification is a critical topic for foreign companies — distinct enough from existing categories to warrant its own section."
+    reversible: true
+  - decision: "News items cover real regulatory topics with realistic dates"
+    rationale: "Credible, authoritative content for AEO — covers IRS enforcement, state law changes, DOL updates, FinCEN guidance, and OECD implications."
+    reversible: true
+  - decision: "Glossary terms alphabetically sorted"
+    rationale: "Terms were already roughly alphabetical — new terms inserted in correct positions for consistent ordering."
+    reversible: true
+
+known_risks:
+  - risk: "Domain uspayrollguide.com not yet registered"
+    mitigation: "User action required — add as custom domain in Vercel once registered"
+    severity: medium
+  - risk: "All content is hardcoded in page components — large file sizes"
+    mitigation: "Migrate to MongoDB-backed content in Phase 4"
+    severity: low
+  - risk: "GitHub repo still named 'global-payroll-nexus'"
+    mitigation: "Rename when convenient — Vercel connection may need updating"
+    severity: low
+  - risk: "Blog post content uses string-based markdown parsing (not a library)"
+    mitigation: "Works fine for current content patterns. If content complexity grows, consider MDX or a proper markdown parser."
+    severity: low
+
+explicitly_deferred:
+  - "Organization + BreadcrumbList JSON-LD schema"
+  - "OG images for social sharing"
+  - "Last updated timestamps on content pages"
+  - "Internal linking audit between pillar pages"
+  - "Chloé voice consistency review across all new content"
+  - "MongoDB integration for dynamic blog content"
+  - "Blog pagination and category filtering"
+  - "Domain registration (uspayrollguide.com)"
+  - "Git repo rename"
+
+next_actions:
+  - "Register uspayrollguide.com and add as custom domain in Vercel"
+  - "Rename GitHub repo from global-payroll-nexus"
+  - "Add Organization + BreadcrumbList JSON-LD schema"
+  - "Add OG images for social sharing"
+  - "Strengthen internal linking between pillar pages and new blog posts"
+  - "Add last-updated timestamps to content pages"
+  - "Run /audit to baseline code quality"
+  - "Review Chloé voice consistency across 11 new blog posts"
+  - "Consider blog pagination now that there are 14 posts"
+
+invariants:
+  - "Site NOT branded as Teamed — independent resource"
+  - "CTAs link to teamed.global/contact-teamed"
+  - "Content voice: Chloé persona — reassuringly direct, advisory"
+  - "AEO-first pattern on all content pages"
+  - "MongoDB data under `data` field, not top-level"
+  - "Check HQ never mentioned publicly"
+  - "Framer Motion retained for animations"
+  - "Brand: slate blue #2D5A7B, lime #C1FA6B, coral #FF8E6E, Inter font"
+  - "All cards use ContentCard component for consistent design"
+  - "All blog posts include FAQs with FAQPage schema markup"
