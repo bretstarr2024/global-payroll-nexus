@@ -1,0 +1,79 @@
+session_id: "III"
+date: "2026-03-13"
+branch: main
+version: "1.1.1"  # Patch: visual fix — accurate state outline SVGs
+
+deployment:
+  platform: "Vercel"
+  status: "auto-deploy on push — us-payroll-guide.vercel.app"
+
+build_verification:
+  next_build: PASS
+  pages_generated: 36
+  errors: 0
+
+data_structure_consistency:
+  status: "not modified — no MongoDB or data model changes"
+
+commits:
+  - hash: "851491c"
+    message: "fix: Replace placeholder state icons with accurate ProPublica SVG outlines"
+
+artifacts_updated:
+  # New files
+  - components/StateIcon.tsx
+  # Modified files
+  - app/page.tsx
+  - app/states/page.tsx
+  - docs/roadmap.md
+
+decisions_made:
+  - decision: "Use ProPublica state outlines from coryetzkorn/state-svg-defs (MIT)"
+    rationale: "High-quality, geographically accurate SVG paths; public domain original design by ProPublica; MIT-licensed repo"
+    reversible: true
+  - decision: "Shared StateIcon component with filled silhouettes (not stroke outlines)"
+    rationale: "Filled shapes are more recognizable at small icon sizes than stroke outlines"
+    reversible: true
+  - decision: "StateIcon uses currentColor fill, inheriting from parent text-primary"
+    rationale: "Consistent with brand color system, no hardcoded colors in component"
+    reversible: true
+
+known_risks:
+  - risk: "Domain uspayrollguide.com not yet registered"
+    mitigation: "User action required — add as custom domain in Vercel once registered"
+    severity: medium
+  - risk: "Blog content is hardcoded in page components"
+    mitigation: "Migrate to MongoDB-backed content in Phase 4"
+    severity: low
+  - risk: "GitHub repo still named 'global-payroll-nexus'"
+    mitigation: "Rename when convenient — Vercel connection may need updating"
+    severity: low
+
+explicitly_deferred:
+  - "Organization + BreadcrumbList JSON-LD schema"
+  - "OG images for social sharing"
+  - "Last updated timestamps on content pages"
+  - "Internal linking audit between pillar pages"
+  - "Chloé voice consistency review"
+  - "MongoDB integration for dynamic blog content"
+  - "Domain registration (uspayrollguide.com)"
+  - "Git repo rename"
+
+next_actions:
+  - "Register uspayrollguide.com and add as custom domain in Vercel"
+  - "Rename GitHub repo from global-payroll-nexus"
+  - "Add Organization + BreadcrumbList JSON-LD schema"
+  - "Add OG images for social sharing"
+  - "Strengthen internal linking between pillar pages and resources"
+  - "Add last-updated timestamps to content pages"
+  - "Run /audit to baseline code quality"
+
+invariants:
+  - "Site NOT branded as Teamed — independent resource"
+  - "CTAs link to teamed.global/contact-teamed"
+  - "Content voice: Chloé persona — reassuringly direct, advisory"
+  - "AEO-first pattern on all content pages"
+  - "MongoDB data under `data` field, not top-level"
+  - "Check HQ never mentioned publicly"
+  - "Framer Motion retained for animations"
+  - "Brand: slate blue #2D5A7B, lime #C1FA6B, coral #FF8E6E, Inter font"

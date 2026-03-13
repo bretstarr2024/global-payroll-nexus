@@ -1,6 +1,33 @@
 # Session Handoff: US Payroll Guide
 
-**Last Updated:** 2026-03-13 (Session II)
+**Last Updated:** 2026-03-13 (Session III)
+
+---
+
+## Session III — 2026-03-13
+
+### What was done this session
+1. **Replaced placeholder state icons with accurate geographic outlines** — sourced from ProPublica via `coryetzkorn/state-svg-defs` (MIT license)
+2. **New `StateIcon` component** (`components/StateIcon.tsx`) — shared component with real SVG paths for all 10 states, uses `currentColor` fill to inherit brand colors
+3. **Updated homepage** (`app/page.tsx`) — removed inline fake SVG paths, imports `StateIcon`
+4. **Updated states index** (`app/states/page.tsx`) — replaced 2-letter text abbreviations with `StateIcon` silhouettes
+
+### Current state
+- **Build**: PASSING (36 pages)
+- **Deploy**: Vercel — us-payroll-guide.vercel.app (auto-deploy on push)
+- **Domain**: uspayrollguide.com — NOT YET REGISTERED
+- **Git**: github.com/bretstarr2024/global-payroll-nexus (repo name still needs updating)
+- **Content**: All static, in-page. Blog posts hardcoded in components. No MongoDB integration yet.
+- **Version**: 1.1.1
+
+### What's next (priority order)
+1. Register uspayrollguide.com and add as custom domain in Vercel
+2. Rename GitHub repo
+3. Add Organization + BreadcrumbList JSON-LD
+4. Add OG images for social sharing
+5. Strengthen internal linking between pillar pages and resources
+6. Add last-updated timestamps
+7. Run /audit baseline
 
 ---
 
