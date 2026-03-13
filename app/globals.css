@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-nexus-purple: #966EFF;
+    --color-nexus-purple-deep: #7B4FE0;
+    --color-nexus-coral: #FF8E6E;
+    --color-nexus-lime: #C1FA6B;
+    --color-nexus-dark: #121213;
+    --color-nexus-offwhite: #F8F8FA;
+    --color-nexus-gray-500: #A7A7A7;
+    --color-nexus-gray-700: #4A4A52;
+    --color-nexus-gray-900: #1A1A1F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-nexus-offwhite text-nexus-gray-900 antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-nexus-gray-900;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply text-nexus-purple hover:text-nexus-purple-deep transition-colors;
+  }
+
+  ::selection {
+    @apply bg-nexus-lime/40 text-nexus-gray-900;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-4 sm:px-6;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .prose-custom {
+    @apply max-w-none text-lg text-nexus-gray-700 leading-relaxed;
+  }
+
+  .prose-custom h2 {
+    @apply text-2xl font-bold text-nexus-gray-900 mt-8 mb-4;
+  }
+
+  .prose-custom h3 {
+    @apply text-xl font-semibold text-nexus-gray-900 mt-6 mb-3;
+  }
+
+  .prose-custom p {
+    @apply mb-4;
+  }
+
+  .prose-custom a {
+    @apply text-nexus-purple no-underline hover:underline hover:text-nexus-purple-deep;
+  }
+
+  .prose-custom strong {
+    @apply text-nexus-gray-900;
+  }
+
+  .prose-custom ul, .prose-custom ol {
+    @apply mb-4 pl-6;
+  }
+
+  .prose-custom li {
+    @apply mb-1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-nexus-dark bg-nexus-lime rounded-xl hover:bg-nexus-lime-dark transition-colors focus:outline-none focus:ring-2 focus:ring-nexus-lime focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-nexus-purple rounded-xl hover:bg-nexus-purple-deep transition-colors focus:outline-none focus:ring-2 focus:ring-nexus-purple focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-nexus-gray-900 bg-white border-2 border-nexus-gray-200 rounded-xl hover:border-nexus-purple hover:text-nexus-purple transition-colors focus:outline-none focus:ring-2 focus:ring-nexus-purple focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white border border-nexus-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 text-nexus-gray-900 bg-white border border-nexus-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-nexus-purple focus:border-transparent transition-colors;
+  }
+
+  .label-text {
+    @apply block text-sm font-medium text-nexus-gray-700 mb-2;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+}
+
+/* Sticky TOC styles */
+.toc-link {
+  @apply block py-1.5 text-sm text-nexus-gray-500 hover:text-nexus-purple transition-colors border-l-2 border-transparent pl-4;
+}
+
+.toc-link.active {
+  @apply text-nexus-purple border-l-nexus-purple font-medium;
+}
+
+/* FAQ Accordion styles */
+.faq-item summary {
+  @apply cursor-pointer list-none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-icon {
+  @apply rotate-180;
+}
+
+/* Announcement banner animation */
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
