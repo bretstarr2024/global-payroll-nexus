@@ -1,6 +1,6 @@
 # US Payroll Guide — Roadmap
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-13 (Session III)
 
 ---
 
@@ -45,7 +45,7 @@
 - [ ] Add remaining high-demand states (New Jersey, Pennsylvania, North Carolina, etc.)
 - [ ] Add state comparison functionality
 - [ ] State-specific compliance checklists
-- [ ] State SVG icons — replace placeholder line art with accurate state outlines
+- [x] State SVG icons — accurate ProPublica outlines via StateIcon component (Session III)
 
 ## Phase 4: Dynamic Content
 - [ ] Connect MongoDB for blog/resource content (replace static blog post data)

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { StateIcon } from '@/components/StateIcon';
 
 const pillars = [
   {
@@ -45,34 +46,6 @@ const pillars = [
   },
 ];
 
-// Simple line-art SVG outlines for each state
-const stateIcons: Record<string, React.ReactNode> = {
-  Delaware: (
-    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 4 L22 4 L24 10 L26 18 L24 26 L20 34 L16 30 L14 20 L16 10 Z" />
-    </svg>
-  ),
-  California: (
-    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 4 L14 4 L16 8 L14 14 L16 18 L18 22 L22 28 L26 32 L24 36 L20 36 L16 32 L12 28 L8 22 L6 16 L8 10 Z" />
-    </svg>
-  ),
-  'New York': (
-    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 12 L10 10 L18 8 L26 10 L30 12 L34 16 L30 20 L28 18 L24 22 L20 26 L16 24 L12 20 L8 18 L4 16 Z" />
-    </svg>
-  ),
-  Texas: (
-    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 4 L28 4 L28 10 L34 10 L34 16 L30 22 L26 30 L22 36 L18 34 L14 30 L10 26 L6 20 L4 14 L8 10 Z" />
-    </svg>
-  ),
-  Florida: (
-    <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 6 L30 6 L32 10 L30 14 L28 20 L24 28 L20 34 L18 32 L16 26 L12 20 L8 14 L4 10 Z" />
-    </svg>
-  ),
-};
 
 const topStates = [
   { name: 'Delaware', href: '/states/delaware', detail: 'Most common for incorporation' },
@@ -220,7 +193,7 @@ export default function HomePage() {
               <AnimatedSection key={state.href} delay={index * 0.05}>
                 <Link href={state.href} className="card card-hover group block hover:no-underline p-5 h-full flex flex-col items-center text-center">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                    {stateIcons[state.name]}
+                    <StateIcon state={state.name} />
                   </div>
                   <span className="block text-base font-semibold text-text group-hover:text-primary transition-colors">{state.name}</span>
                   <span className="block text-sm text-text-muted mt-1">{state.detail}</span>

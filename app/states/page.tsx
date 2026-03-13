@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { StateIcon } from '@/components/StateIcon';
 
 export const metadata: Metadata = {
   title: 'US State Guides | Employer Registration, Taxes & Employment Law by State',
@@ -50,8 +51,8 @@ export default function StatesPage() {
                 href={`/states/${state.slug}`}
                 className="card group flex items-start gap-4 hover:no-underline hover:border-primary/30"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <span className="text-sm font-bold text-primary">{state.name.slice(0, 2).toUpperCase()}</span>
+                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <StateIcon state={state.name} className="w-6 h-6" />
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-text group-hover:text-primary transition-colors">
